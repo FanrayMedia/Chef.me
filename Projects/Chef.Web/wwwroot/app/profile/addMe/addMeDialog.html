@@ -1,0 +1,39 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" ng-click="vm.cancel()">&times;</button>
+    <h4 class="modal-title">
+        Add {{vm.profile.firstName}} {{vm.profile.lastName}} To Your Collections
+    </h4>
+</div>
+<div class="modal-body" style="padding:0;margin:0">
+    <div class="row">
+        <div class="col-md-8">
+            <img ng-src="{{'/wwwroot/images/bg/' + vm.profile.bgImg}}" 
+                 style="width:100%;height:auto" alt="" />
+        </div>
+        <div class="col-md-4">
+            <span>
+                {{vm.profile.firstName}} {{vm.profile.lastName}}
+            </span>
+            <div style="margin-top: 4px;margin-bottom: 4px;color: #777;">
+                {{vm.profile.locations}}
+            </div>
+        </div>
+    </div>
+    <div class="list-group">
+        <a href="" class="list-group-item"
+           ng-repeat="group in vm.groupList"
+           ng-click="vm.addRemoveUser(group)">
+            {{group.name}}&nbsp;&nbsp;<i ng-class="{'fa fa-check fa-lg green':group.targetExists}"></i>
+        </a>
+    </div>
+</div>
+<div style="padding:5px;">
+    <form name="addForm" ng-submit="vm.createGroup()" class="form-inline" role="form">
+        <div class="form-group pull-right">
+            <input type="text" class="form-control" name="newGroup" ng-model="vm.ff.newGroup"
+                   placeholder="Add to a new collection" required />
+            <button ng-disabled="addForm.$invalid" class="btn btn-default">Create</button>
+        </div>
+        <div class="clearfix"></div>
+    </form>
+</div>

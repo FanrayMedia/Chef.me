@@ -1,0 +1,74 @@
+﻿@*
+    User registration form.
+*@
+@model Chef.Web.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+    var jsonModelStr = Chef.WebHelper.ToJson(Model);
+}
+
+<h2>@ViewBag.Title.</h2>
+
+<form action="/Account/Register" class="form-horizontal jumbotron col-xs-12 col-sm-6 col-md-5" method="post" role="form"
+      ng-controller="registerController"
+      ng-init="vm=@jsonModelStr"
+      novalidate>
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+
+    <div class="form-group">
+        <label for="userName">Select a Chef.me username (a-z,A-Z,0-9)</label>
+        <div class="username-fieldhint">chef.me/</div>
+        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", style = "padding-left:91px;" })
+        @*<input ng-model="vm.userName" class="form-control" data-val="true" data-val-required="The Username field is required." id="UserName" name="UserName" style="padding-left:91px;" type="text" value="" />*@
+    </div>
+
+    <div class="form-group">
+        <label for="FirstName">First Name</label>
+        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+        @*<input ng-model="vm.firstName" class="form-control" data-val="true" data-val-required="The FirstName field is required." id="FirstName" name="FirstName" type="text" value="" />*@
+    </div>
+
+    <div class="form-group">
+        <label for="LastName">Last Name</label>
+        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+        @*<input ng-model="vm.lastName" class="form-control" data-val="true" data-val-required="The LastName field is required." id="LastName" name="LastName" type="text" value="" />*@
+    </div>
+
+    <div class="form-group">
+        <label for="Email">Email</label>
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        @*<input ng-model="vm.email" class="form-control" data-val="true" data-val-email="The Email field is not a valid e-mail address." data-val-required="The Email field is required." id="Email" name="Email" type="text" value="" />*@
+    </div>
+
+    <div class="form-group">
+        <label for="Location">Location</label>
+        <input ng-model="vm.location" class="form-control" data-val="true" data-val-required="The Location field is required." 
+               id="Location" name="Location" type="text" value="" 
+         typeahead="address for address in getLocation($viewValue)"  
+               maxlength="45"  autocomplete="false"  
+               />
+    </div>
+
+    <div class="form-group">
+        <label for="Password">Password</label>
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+        @*<input ng-model="vm.password" class="form-control" data-val="true" data-val-length="The Password must be at least 6 characters long." data-val-length-max="100" data-val-length-min="6" data-val-required="The Password field is required." id="Password" name="Password" type="password" />*@
+    </div>
+    <div class="form-group">
+        <label for="ConfirmPassword">Confirm Password</label>
+        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+        @*<input ng-model="vm.confirmPassword" class="form-control" data-val="true" data-val-equalto="The password and confirmation password do not match." data-val-equalto-other="*.Password" id="ConfirmPassword" name="ConfirmPassword" type="password" />*@
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Register" />
+        </div>
+    </div>
+
+</form>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,16 @@
+﻿<tab heading="Background">
+    <div class="modal-body">
+        <div class="form-group">
+            <label>Gallery Backgrounds</label>
+            <ul class="bgimg-list" ng-repeat="img in imgList" style="padding: 0; margin:5px 0 0 26px">
+                <li>
+                    @* ~/Content/img/bg/{{img}}_th.jpg *@
+                    <img ng-src="{{'/wwwroot/images/bg/' + img + '_th.jpg'}}" class="bgimg-border"
+                         ng-click="updateBgImg(img)"
+                         id="{{img}}" />
+                </li>
+            </ul>
+            <p>Comming soon you'll be able to upload your own photo for the background.</p>
+        </div>
+    </div>
+</tab>

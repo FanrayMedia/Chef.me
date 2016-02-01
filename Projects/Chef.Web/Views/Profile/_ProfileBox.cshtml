@@ -1,0 +1,55 @@
+﻿<div class="profileshadow" style="background-color: rgba({{rgb.r}}, {{rgb.g}}, {{rgb.b}}, {{opa}});">
+
+    <h1 class="name"
+        style="color:{{profile.styles.name_color}};font-size: {{profile.styles.name_size}}px; font-family: {{profile.styles.name_font}}">
+        {{profile.firstName}} {{profile.lastName}}
+    </h1>
+    <h2 class="headline"
+        style="color:{{profile.styles.headline_color}};font-size:{{profile.styles.headline_size}}px;font-family:{{profile.styles.headline_font}}">
+        {{profile.headline}}
+    </h2>
+    <div>
+        <div class="btn-group" style="margin-top: .5em;margin-bottom: 1em; margin-right:1em"
+             ng-if="!isRequestAuthenticated">
+            <a href="/login" class="btn btn-default"><i class="glyphicon glyphicon-plus bigger-120"></i> Add me</a>
+            <a href="/login" class="btn btn-default"><i class="glyphicon glyphicon-envelope bigger-110"></i> Email me</a>
+        </div>
+        <div class="btn-group" style="margin-top: .5em;margin-bottom: 1em; margin-right:1em"
+             ng-if="isRequestAuthenticated">
+            <button type="button" class="btn btn-default"
+                    ng-controller="addMeController"
+                    ng-click="openAddMeModal(profile)">
+                <i class="glyphicon glyphicon-plus bigger-120"></i> Add me
+            </button>
+            <button type="button" class="btn btn-default"
+                    ng-controller="emailMeController"
+                    ng-click="openEmailMeModal(profile)">
+                <i class="glyphicon glyphicon-envelope bigger-110"></i> Email me
+            </button>
+            <button ng-if="showEditPage"
+                    class="btn btn-default" data-toggle="modal" data-target="#editbox">
+                <i class="glyphicon glyphicon-edit bigger-110"></i> Edit Page
+            </button>
+        </div>
+    </div>
+    <div class="bio"
+         style="color:{{profile.styles.bio_color}};font-size:{{profile.styles.bio_size}}px;font-family:{{profile.styles.bio_font}}">
+        {{profile.bio}}
+    </div>
+    <div class="links">
+        <ul class="list" style="color:white">
+            <li>
+                <i class="fa fa-map-marker" style="margin-right:5px"></i>
+                <a href="#" style="color: {{profile.styles.links_color}};font-size:{{profile.styles.links_size}}px;font-family:{{profile.styles.links_font}}">
+                    {{profile.locations}}
+                </a>
+            </li>
+            <li>
+                <i class="fa fa-star" style="margin-right:5px"></i>
+                <a ng-href="{{profile.userName + '/collections'}}" style="color: {{profile.styles.links_color}};font-size:{{profile.styles.links_size}}px;font-family:{{profile.styles.links_font}}">
+                    My collections
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+﻿@using Chef.Web.Models
+@{
+    ViewBag.Title = "Home Page";
+}
+<div id="profile-bg">
+    <img src="~/wwwroot/images/front.jpg" alt="">
+</div>
+
+<div class="row">
+    <h1>Chef.me</h1>
+    <p class="lead">A Personal Chef Page.</p>
+</div>
+
+
+@if (!Request.IsAuthenticated)
+{
+
+    <div class="row">
+        <div class="col-md-10">
+            <section id="socialLoginForm">
+                <a href="/account/register" class="local_connect" role="button">Get Started!</a>
+                <a href="/login" class="local_connect" role="button">Sign in with Local Account</a>
+                <br />
+                <div>or signup with:</div>
+                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+
+
+            </section>
+        </div>
+    </div>
+}

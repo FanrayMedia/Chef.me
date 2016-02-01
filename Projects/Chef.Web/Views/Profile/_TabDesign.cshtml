@@ -1,0 +1,129 @@
+﻿<tab heading="Design">
+    <div class="modal-body" style="padding-top:5px">
+        <div class="form-group">
+            <label>Name Text Styles</label>
+            <div class="form-inline">
+                <div class="form-group left-fg">
+                    <!--name font dropdown-->
+                    <select name="name_font" class="form-control"
+                            ng-model="profile.styles.name_font"
+                            ng-change="updateDesign('name_font')">
+                        @Html.Partial("_FontsDropdown")
+                    </select>
+                </div>
+                <div class="form-group left-fg">
+                    <!--name color picker-->
+                    <span name="name_color" class="colorpkr" colorpicker
+                          style="background-color: {{profile.styles.name_color}};"
+                          ng-model="profile.styles.name_color" ng-change="updateDesign('name_color')">&nbsp;</span>
+                </div>
+                <div class="form-group right-fg">
+                    <!--name size slider-->
+                    <input name="name_size" type="text" id="name_size_slider"
+                           slider options="name_size_slider_options"
+                           ng-model="profile.styles.name_size" ng-change="updateDesign('name_size')" />
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Headline Text Styles</label>
+            <div class="form-inline">
+                <div class="form-group left-fg">
+                    <!--headline font dropdown-->
+                    <select name="headline_font" class="form-control"
+                            ng-model="profile.styles.headline_font"
+                            ng-change="updateDesign('headline_font')">
+                        @Html.Partial("_FontsDropdown")
+                    </select>
+                </div>
+                <div class="form-group left-fg">
+                    <!--headline color picker-->
+                    <span name="headline_color" colorpicker class="colorpkr"
+                          style="background-color: {{profile.styles.headline_color}};"
+                          ng-model="profile.styles.headline_color"
+                          ng-change="updateDesign('headline_color')">&nbsp;</span>
+                </div>
+                <div class="form-group right-fg">
+                    <!--headline size slider-->
+                    <input name="headline_size" type="text" id="headline_size_slider"
+                           slider options="headline_size_slider_options"
+                           ng-model="profile.styles.headline_size"
+                           ng-change="updateDesign('headline_size')" />
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Bio Text Styles</label>
+            <div class="form-inline">
+                <div class="form-group left-fg">
+                    <!--bio font dropdown-->
+                    <select name="bio_font" class="form-control"
+                            ng-model="profile.styles.bio_font"
+                            ng-change="updateDesign('bio_font')">
+                        @Html.Partial("_FontsDropdown")
+                    </select>
+                </div>
+                <div class="form-group left-fg">
+                    <!--bio color picker-->
+                    <span name="bio_color" colorpicker class="colorpkr"
+                          style="background-color: {{profile.styles.bio_color}};"
+                          ng-model="profile.styles.bio_color"
+                          ng-change="updateDesign('bio_color')">&nbsp;</span>
+                </div>
+                <div class="form-group right-fg">
+                    <!--bio size slider-->
+                    <input name="bio_size" type="text" id="bio_size_slider"
+                           slider options="bio_size_slider_options"
+                           ng-model="profile.styles.bio_size"
+                           ng-change="updateDesign('bio_size')" />
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Links Text Styles</label>
+            <div class="form-inline">
+                <div class="form-group left-fg">
+                    <!--links font dropdown-->
+                    <select name="links_font" class="form-control"
+                            ng-model="profile.styles.links_font"
+                            ng-change="updateDesign('links_font')">
+                        @Html.Partial("_FontsDropdown")
+                    </select>
+                </div>
+                <div class="form-group left-fg">
+                    <!--links color picker-->
+                    <span name="links_color" colorpicker class="colorpkr"
+                          style="background-color: {{profile.styles.links_color}};"
+                          ng-model="profile.styles.links_color"
+                          ng-change="updateDesign('links_color')">&nbsp;</span>
+                </div>
+                <div class="form-group right-fg">
+                    <!--links size slider-->
+                    <input name="links_size" type="text" id="links_size_slider"
+                           slider options="links_size_slider_options"
+                           ng-model="profile.styles.links_size"
+                           ng-change="updateDesign('links_size')" />
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Box Background Color and Opacity</label>
+            <div class="form-inline">
+                <div class="form-group left-fg">
+                    <!--bgcolor picker-->
+                    <span name="profbox_bgcolor" colorpicker class="colorpkr"
+                          style="background-color: {{profile.styles.profbox_bgcolor}};"
+                          ng-model="profile.styles.profbox_bgcolor"
+                          ng-change="updateDesign('profbox_bgcolor')">&nbsp;</span>
+                </div>
+                <div class="form-group right-fg">
+                    <!--opacity slider-->
+                    <input name="profbox_opacity" type="text" id="profbox_opacity_slider"
+                           slider options="profbox_opacity_slider_options"
+                           ng-model="profile.styles.profbox_opacity"
+                           ng-change="updateDesign('profbox_opacity')" />
+                </div>
+            </div>
+        </div>
+    </div>
+</tab>

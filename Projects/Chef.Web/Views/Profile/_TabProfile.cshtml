@@ -1,0 +1,86 @@
+﻿<tab heading="Profile">
+    <div class="modal-body" style="padding-top:5px">
+        <div class="form-group">
+            <label for="firstName">Name</label>
+            <div class="form-inline">
+                <a href="#" id="nameLink" ng-click="editClick('name')">{{profile.firstName}} {{profile.lastName}}</a>
+                <div id="nameDiv" class="hidden">
+                    <div class="form-group" ng-class="{'has-error': isInvalid('firstName')}">
+                        <input id="firstName" name="firstName" type="text" class="form-control"
+                               placeholder="First name" ng-maxlength="20" required
+                               ng-model="profile.firstName" />
+                    </div>
+                    <div class="form-group" ng-class="{'has-error': isInvalid('lastName')}">
+                        <input name="lastName" type="text" class="form-control"
+                               placeholder="Last name" ng-maxlength="20" required
+                               ng-model="profile.lastName" />
+                    </div>
+                    <button type="button" class="btn btn-primary" ng-disabled="profileEditForm.firstName.$invalid || profileEditForm.lastName.$invalid"
+                            ng-click="updateProfile('name')">
+                        <span class="fa fa-check fa-lg"></span>
+                    </button>
+                    <button type="button" class="btn btn-default" ng-click="cancelClick('name')">
+                        <span class="fa fa-times fa-lg"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="headline">Headline</label>
+            <a href="#" id="headlineLink" ng-click="editClick('headline')" style="display:block">{{profile.headline || 'add a headline'}}</a>
+            <div id="headlineDiv" class="hidden" ng-class="{'has-error': isInvalid('headline')}">
+                <input name="headline" id="headline" class="form-control"
+                       placeholder="A simple sentence that introduces yourself" ng-maxlength="128"
+                       ng-model="profile.headline" />
+                <div style="float:right;padding-top:3px">
+                    <button type="button" class="btn btn-primary" ng-disabled="profileEditForm.headline.$invalid"
+                            ng-click="updateProfile('headline')">
+                        <span class="fa fa-check fa-lg"></span>
+                    </button>
+                    <button type="button" class="btn btn-default" ng-click="cancelClick('headline')">
+                        <span class="fa fa-times fa-lg"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="bio">Bio</label>
+            <a href="#" id="bioLink" ng-click="editClick('bio')" style="display:block">{{profile.bio || 'add a bio'}}</a>
+            <div id="bioDiv" class="hidden" ng-class="{'has-error': isInvalid('bio')}">
+                <textarea class="form-control" name="bio" id="bio"
+                          placeholder="A couple of paragraphs of your biography"
+                          ng-maxlength="600" rows="6"
+                          ng-model="profile.bio"></textarea>
+                <div style="float:right;padding-top:3px">
+                    <button type="button" class="btn btn-primary" ng-disabled="profileEditForm.bio.$invalid"
+                            ng-click="updateProfile('bio')">
+                        <span class="fa fa-check fa-lg"></span>
+                    </button>
+                    <button type="button" class="btn btn-default" ng-click="cancelClick('bio')">
+                        <span class="fa fa-times fa-lg"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="city">Location</label>
+            <div class="form-inline">
+                <a href="#" id="locationsLink" ng-click="editClick('locations')">{{profile.locations}}</a>
+                <div id="locationsDiv" class="hidden" ng-class="{'has-error': isInvalid('locations')}">
+                    <input type="text" name="locations" class="form-control" style="width:50%" required
+                           placeholder="City, State, Country" ng-maxlength="45" autocomplete="false"
+                           typeahead="address for address in getLocation($viewValue)"
+                           typeahead-loading="loadingLocations"
+                           ng-model="profile.locations" />
+                    <button type="button" class="btn btn-primary" ng-disabled="profileEditForm.locations.$invalid"
+                            ng-click="updateProfile('locations')">
+                        <span class="fa fa-check fa-lg"></span>
+                    </button>
+                    <button type="button" class="btn btn-default" ng-click="cancelClick('locations')">
+                        <span class="fa fa-times fa-lg"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</tab>

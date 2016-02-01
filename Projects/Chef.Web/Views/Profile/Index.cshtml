@@ -1,0 +1,66 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div ng-controller="profileController" ng-cloak id="profile-page">
+    <div id="profile-bg">
+        <img ng-src="{{'/wwwroot/images/bg/' + profile.bgImg}}" alt="">
+    </div>
+
+    <!-- Profile Box  try ng-cloak and server side -->
+    <div class="profilebox" profile-draggable ng-if="showEditPage">
+        @Html.Partial("_ProfileBox")
+    </div>
+    <div class="profilebox" ng-if="!showEditPage" 
+         style="position:relative;left:{{profile.styles.profbox_x}}px;top:{{profile.styles.profbox_y}}px">
+        @Html.Partial("_ProfileBox")
+    </div>
+
+    <!-- Edit Box -->
+    <div class="modal fade" id="editbox" tabindex="-1" role="dialog" aria-labelledby="editboxLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog" id="profileModalBox">
+            <div class="modal-content">
+
+                <div class="modal-header" style="padding:8px">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Edit Page</h4>
+                </div>
+                <form id="profileEditForm" name="profileEditForm" role="form" novalidate>
+                    <tabset>
+                        @Html.Partial("_TabProfile")
+                        @Html.Partial("_TabDesign")
+                        @Html.Partial("_TabBackground")
+                    </tabset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* ------------------------------------------------- css  stay on this page *@
+
+@section styles {
+    <style>
+        .modal-backdrop {
+            background: none; @*turn off the modal background color*@
+        }
+
+        html, body {
+            height: 100%; @*must be here for the 100% height constain to work*@
+        }
+        @*on _Layout.cshtml next too container*@
+        #profile-constrain {
+            min-height: 100%; 
+            /*border: 2px solid #ccc;*/ /*debugging purpose*/
+            padding: 10px;
+        }
+
+        @*Design Tab form-group spacing*@
+        .form-group .right-fg {
+            width: 33%;
+        }
+
+        .form-group .left-fg {
+            padding-right: 10px;
+        }
+    </style>
+}

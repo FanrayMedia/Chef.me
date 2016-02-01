@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row" ng-controller="usersController as vm" ng-cloak style="margin-top:20px">
+    <div class="col-xs-6 col-md-3" style="margin-left: 18px;"
+         ng-repeat="user in vm.users">
+        <a ng-href="/{{user.userName}}">
+            <img style="width:300px;height:200px;padding:5px;border:1px solid #ddd"
+                 ng-src="{{'/wwwroot/images/bg/' + user.bgImg}}" alt="{{user.firstName}}" />
+        </a>
+        <div class="name">
+            <a class="user-first-last-name"
+               ng-href="/{{user.userName}}">
+                {{user.firstName}} {{user.lastName}}
+            </a>
+        </div>
+        <div style="padding-bottom:40px"></div>
+    </div>
+</div>

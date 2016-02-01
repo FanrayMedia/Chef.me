@@ -1,0 +1,117 @@
+﻿@*
+    A user's collection of other user profiles.
+*@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="user-profile" ng-controller="collectionsUsersController as vm" ng-cloak>
+    @* ------------------------------------------ owner *@
+    <div class="row">
+        <div class="col-md-2 col-sm-4">
+            <a ng-href="/{{vm.profile.userName}}">
+                <img class="img-responsive" alt="{{vm.profile.firstName}}'s Avatar"
+                     style="border:1px solid #eee; padding:4px; width:200px; height:auto"
+                     ng-src="{{'/wwwroot/images/bg/' + vm.profile.bgImg}}">
+            </a>
+        </div>
+        <div class="col-md-10 col-sm-8">
+            <h3 class="bolder">{{vm.profile.firstName}} {{vm.profile.lastName}}'s Collections</h3>
+        </div>
+    </div>
+    <hr />
+
+    @* ------------------------------------------ current group header *@
+    <div class="row">
+        <div style="margin:0 0 20px 20px">
+
+            @* editable group name, no shown for All contacts tab *@
+            <span class="bolder" style="font-size:16px;margin-right:10px"
+                  ng-show="!vm.showContactEditButtons && vm.activeGroup.id !==0">
+                {{vm.activeGroup.name}}
+            </span>
+            <a href="#" class="bolder" style="font-size:16px;margin-right:10px"
+               ng-show="vm.showContactEditButtons && vm.activeGroup.id !==0"
+               onbeforesave="vm.updateGroupName($data)"
+               editable-text="vm.activeGroup.name">{{vm.activeGroup.name || 'empty'}}</a>
+
+            @* user count in the current group *@
+            <span style="font-weight:bold;color:gray"
+                  ng-hide="vm.activeGroup.userCount===0 && vm.activeGroup.id===0">
+                <span style="margin:0 2px">{{vm.activeGroup.userCount}}</span>
+                <span style="margin-right:10px">people</span>
+            </span>
+            <span ng-show="vm.activeGroup.userCount===0 && vm.activeGroup.id===0 && vm.showContactEditButtons">
+                <a href="/people">You have no connections, go make some &raquo;</a>
+            </span>
+
+            @* delete button to delete the current group, not shown for All contacts tab *@
+            <span ng-show="vm.activeGroup.id !== 0">
+                <a ng-click="vm.destroyGroup(vm.activeGroup)" ng-show="vm.showContactEditButtons">Delete</a>
+            </span>
+        </div>
+    </div>
+    @* ----------------------------------- user collections *@
+    <div class="row">
+        <div class="col-xs-12 col-sm-9 col-md-9">
+            <div class="row">
+                <div class="col-md-4 col-xs-6" ng-repeat="user in vm.activeGroup.users">
+                    <div class="coll-img">
+                        <a ng-href="/{{user.userName}}">
+                            <img class="ttt" style="width:270px;height:180px;padding:4px;border:1px solid #eee"
+                                 ng-src="{{'/wwwroot/images/bg/' + user.bgImg}}" alt="{{user.firstName}}" />
+                        </a>
+                        <div class="btn-group">
+                            <button class="btn btn-default"
+                                    ng-controller="addMeController"
+                                    ng-click="openAddMeModal(user)"
+                                    ng-show="{{vm.showContactEditButtons}}">
+                                <i class="glyphicon glyphicon-plus bigger-120"></i>
+                            </button>
+                            <button class="btn btn-default"
+                                    ng-controller="emailMeController"
+                                    ng-click="openEmailMeModal(user)"
+                                    ng-show="{{vm.showContactEditButtons}}">
+                                <i class="glyphicon glyphicon-envelope bigger-110"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="">
+                        <a class=""
+                           ng-href="/{{user.userName}}">
+                            {{user.firstName}} {{user.lastName}}
+                        </a>
+                    </div>
+                    <div style="padding-bottom:40px"></div>
+                </div>
+            </div>
+        </div>
+
+        @* ------------------------------------------ group list *@
+        <div class="col-xs-12 col-sm-3 col-md-3">
+            <div class="list-group">
+                <a class="list-group-item"
+                   ng-repeat="group in vm.groupList"
+                   ng-href="{{group.absoluteLink}}"
+                   ng-class="{'active':group.id===vm.activeGroup.id}">
+                    {{group.name}}  <span class="badge">{{group.userCount}}</span>
+                </a>
+            </div>
+            <form name="addForm" class="form-inline"
+                  ng-submit="vm.createGroup()" ng-show="vm.showContactEditButtons" novalidate>
+                <input ng-model="vm.newGroupName" class="form-control"
+                       type="text" name="newGroup" placeholder="New collection" required />
+                <button ng-disabled="addForm.$invalid" class="btn btn-default">Create</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+@*<span class="bolder" style="margin-right:2px">{{vm.profile.groupCount}}</span>
+    <span style="margin-right:8px">collections</span>
+    <span class="bolder" style="margin-right:2px">{{vm.profile.contactCount}}</span>
+    <span>people</span>
+            <br />
+            <br />
+            <a href="/{{vm.profile.userName}}">&laquo; back to profile</a>*@
