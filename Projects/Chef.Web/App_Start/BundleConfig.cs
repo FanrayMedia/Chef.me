@@ -27,7 +27,7 @@ namespace Chef.Web
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                      "~/Scripts/angular.js",
                        // 3rd party modules 
-                       "~/wwwroot/lib/angular-ui-bootstrap/ui-bootstrap-tpls-0.14.3.js", 
+                       "~/Scripts/angular-ui/ui-bootstrap-tpls.js", // v1.1.2
                        "~/wwwroot/lib/angular-xeditable-0.1.8/js/xeditable.js", 
                        "~/wwwroot/lib/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.js",
                        "~/wwwroot/lib/angular-awesome-slider/angular-awesome-slider.js"
